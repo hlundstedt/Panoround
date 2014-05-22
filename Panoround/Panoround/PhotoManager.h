@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "Panoramas.h"
 
 #define URL_TEMPLATE @"http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=100&minx=%f&miny=%f&maxx=%f&maxy=%f"
 

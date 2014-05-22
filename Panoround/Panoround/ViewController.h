@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoManager.h"
+#import "PhotoCell.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PhotoManagerDelegate>
+
+@property (nonatomic, strong) NSMutableArray<Photo> *photos;
 
 @end

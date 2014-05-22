@@ -25,6 +25,7 @@
 		21A374CA192D2CD500BFED62 /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A374C9192D2CD500BFED62 /* PhotoManager.m */; };
 		21A374CE192D30C800BFED62 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A374CD192D30C800BFED62 /* Photo.m */; };
 		21A374D1192D408700BFED62 /* Panoramas.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A374D0192D408700BFED62 /* Panoramas.m */; };
+		21A374D4192E858300BFED62 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A374D3192E858300BFED62 /* PhotoCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		21A374CD192D30C800BFED62 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		21A374CF192D408700BFED62 /* Panoramas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Panoramas.h; sourceTree = "<group>"; };
 		21A374D0192D408700BFED62 /* Panoramas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Panoramas.m; sourceTree = "<group>"; };
+		21A374D2192E858300BFED62 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
+		21A374D3192E858300BFED62 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
 		34947A30944B44FD8A25A35F /* Pods-Panoround.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panoround.xcconfig"; path = "Pods/Pods-Panoround.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +140,8 @@
 				21A3749A192D2C4800BFED62 /* Supporting Files */,
 				21A374C8192D2CD500BFED62 /* PhotoManager.h */,
 				21A374C9192D2CD500BFED62 /* PhotoManager.m */,
+				21A374D2192E858300BFED62 /* PhotoCell.h */,
+				21A374D3192E858300BFED62 /* PhotoCell.m */,
 			);
 			path = Panoround;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				21A374D1192D408700BFED62 /* Panoramas.m in Sources */,
 				21A374AA192D2C4800BFED62 /* ViewController.m in Sources */,
 				21A374A4192D2C4800BFED62 /* AppDelegate.m in Sources */,
+				21A374D4192E858300BFED62 /* PhotoCell.m in Sources */,
 				21A374A0192D2C4800BFED62 /* main.m in Sources */,
 				21A374CE192D30C800BFED62 /* Photo.m in Sources */,
 				21A374CA192D2CD500BFED62 /* PhotoManager.m in Sources */,
