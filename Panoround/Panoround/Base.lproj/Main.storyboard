@@ -34,18 +34,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="283" height="223"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kwY-C4-A34">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kwY-C4-A34">
                                                     <rect key="frame" x="0.0" y="0.0" width="283" height="223"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </imageView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="utK-b8-6XY">
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="utK-b8-6XY">
                                                     <rect key="frame" x="123" y="93" width="37" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="kwY-C4-A34" secondAttribute="bottom" id="6EX-jN-je4"/>
+                                            <constraint firstAttribute="centerX" secondItem="utK-b8-6XY" secondAttribute="centerX" id="Ir3-7o-snz"/>
+                                            <constraint firstAttribute="trailing" secondItem="kwY-C4-A34" secondAttribute="trailing" id="KBj-cz-FKS"/>
+                                            <constraint firstItem="kwY-C4-A34" firstAttribute="top" secondItem="jcY-LH-bWl" secondAttribute="top" id="fM0-DS-b7h"/>
+                                            <constraint firstItem="kwY-C4-A34" firstAttribute="leading" secondItem="jcY-LH-bWl" secondAttribute="leading" id="n1D-hl-Pzi"/>
+                                            <constraint firstAttribute="centerY" secondItem="utK-b8-6XY" secondAttribute="centerY" id="zLb-sp-LXH"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="activityIndicator" destination="utK-b8-6XY" id="Ie6-QZ-9S9"/>
                                             <outlet property="imageView" destination="kwY-C4-A34" id="cnX-Tx-IeC"/>

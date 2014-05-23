@@ -21,26 +21,36 @@
 
 -(void) setPhoto:(Photo *)photo
 {
-    if (_photo != photo) {
-        _photo = photo;
-    }
+    _photo = photo;
     
-    NSURL *url = [[NSURL alloc] initWithString:_photo.photo_file_url];
-    NSLog(@"Requesting photo from %@", [url absoluteString]);
+    NSLog(@"Requesting photo from %@", [photo.photo_file_url absoluteString]);
     
+    _imageView.image = nil;
+    [_activityIndicator setHidden:NO];
     [_activityIndicator startAnimating];
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init]
+    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:photo.photo_file_url] queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if (error) {
-                                   //TODO: Error handling
-                               } else {
-                                   UIImage *image = [[UIImage alloc] initWithData:data];
-                                   _imageView.image = image;
+                               if ([response.URL isEqual:_photo.photo_file_url]) {
+                                   if (error) {
+                                       //TODO: Error handling
+                                   } else {
+                                       UIImage *image = [[UIImage alloc] initWithData:data];
+                                       _imageView.image = image;
+                                   }
+                                   [_activityIndicator stopAnimating];
+                                   [_activityIndicator setHidden:YES];
                                }
-                               
-                               [_activityIndicator stopAnimating];
-                               [_activityIndicator setHidden:NO];
                            }];
+}
+
+-(void) setDownloadAnimationEnabled:(BOOL)enabled
+{
+    [_activityIndicator setHidden:!enabled];
+    if (enabled) {
+        [_activityIndicator startAnimating];
+    } else {
+        [_activityIndicator stopAnimating];
+    }
 }
 
 /*

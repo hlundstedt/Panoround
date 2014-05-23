@@ -17,11 +17,11 @@
 @property (nonatomic) double longitude;
 @property (nonatomic) int owner_id;
 @property (nonatomic, strong) NSString* owner_name;
-@property (nonatomic, strong) NSString* owner_url;
-@property (nonatomic, strong) NSString* photo_file_url;
+@property (nonatomic, strong) NSURL* owner_url;
+@property (nonatomic, strong) NSURL* photo_file_url;
 @property (nonatomic) int photo_id;
 @property (nonatomic, strong) NSString* photo_title;
-@property (nonatomic, strong) NSString* photo_url;
+@property (nonatomic, strong) NSURL* photo_url;
 @property (nonatomic, strong) NSString* upload_date;
 @property (nonatomic) int width;
 

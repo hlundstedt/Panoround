@@ -16,5 +16,6 @@
 @property (nonatomic, strong) Photo *photo;
 
 -(void) setPhoto:(Photo *)photo;
+-(void) setDownloadAnimationEnabled:(BOOL)enabled;
 
 @end
