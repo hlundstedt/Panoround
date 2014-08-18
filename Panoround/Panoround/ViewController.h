@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PhotoManager.h"
 #import "PhotoCell.h"
+#import "StackLayout.h"
 
-@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PhotoManagerDelegate>
+@interface ViewController : UIViewController <UICollectionViewDataSource, StackLayoutDelegate, PhotoManagerDelegate>
 
 @property (nonatomic, strong) NSMutableArray<Photo> *photos;
 

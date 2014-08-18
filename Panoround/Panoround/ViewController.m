@@ -19,7 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[PhotoManager getPanoramasFromLocation:CLLocationCoordinate2DMake(45.293098, -75.775703) distance:5000 delegate:self];
+    ((StackLayout*) _collectionView.collectionViewLayout).customDataSource = self;
+	[PhotoManager getPanoramasFromLocation:CLLocationCoordinate2DMake(55.7058400, 13.1932100) distance:5000 delegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,6 +35,9 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [_collectionView reloadData];
     });
+    for (Photo *photo in _photos) {
+        NSLog(@"Received photo with dimesions (%d, %d)", photo.width, photo.height);
+    }
 }
 
 - (void)getPanoramasFailedWithError:(NSError *)error
@@ -53,11 +57,19 @@
     return 1;
 }
 
--  (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
     [cell setPhoto:[_photos objectAtIndex:indexPath.row]];
     return cell;
+}
+
+#pragma mark - StackLayoutDelegate
+
+- (CGSize)dimensionForViewAtIndexPath:(NSIndexPath *)indexPath
+{
+    Photo *photo = [_photos objectAtIndex:indexPath.row];
+    return CGSizeMake(photo.width, photo.height);
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -69,16 +81,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     // TODO: Deselect item
-}
-
-#pragma mark - UICollectionViewDelegateFlowLayout
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(200, 200);
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 @end
