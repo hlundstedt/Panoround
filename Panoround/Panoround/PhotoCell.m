@@ -28,19 +28,10 @@
     _imageView.image = nil;
     [_activityIndicator setHidden:NO];
     [_activityIndicator startAnimating];
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:photo.photo_file_url] queue:[[NSOperationQueue alloc] init]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if ([response.URL isEqual:_photo.photo_file_url]) {
-                                   if (error) {
-                                       //TODO: Error handling
-                                   } else {
-                                       UIImage *image = [[UIImage alloc] initWithData:data];
-                                       _imageView.image = image;
-                                   }
-                                   [_activityIndicator stopAnimating];
-                                   [_activityIndicator setHidden:YES];
-                               }
-                           }];
+    [_imageView sd_setImageWithURL:photo.photo_file_url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageUrl) {
+        [_activityIndicator stopAnimating];
+        [_activityIndicator setHidden:YES];
+    }];
 }
 
 -(void) setDownloadAnimationEnabled:(BOOL)enabled

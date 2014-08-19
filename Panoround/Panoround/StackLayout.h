@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define COLUMNS 5
+#define COLUMNS 3
 
 @protocol StackLayoutDelegate
 

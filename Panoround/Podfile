@@ -4,10 +4,10 @@
 target "Panoround" do
 
 pod 'JSONModel'
+pod 'SDWebImage', '~>3.6'
 
 end
 
 target "PanoroundTests" do
 
 end
-
