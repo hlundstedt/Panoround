@@ -49,12 +49,28 @@
                                             <constraint firstItem="kwY-C4-A34" firstAttribute="leading" secondItem="jcY-LH-bWl" secondAttribute="leading" id="n1D-hl-Pzi"/>
                                             <constraint firstAttribute="centerY" secondItem="utK-b8-6XY" secondAttribute="centerY" id="zLb-sp-LXH"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="activityIndicator" destination="utK-b8-6XY" id="Ie6-QZ-9S9"/>
                                             <outlet property="imageView" destination="kwY-C4-A34" id="cnX-Tx-IeC"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="uEQ-QZ-eBi"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="KXg-Um-sUn"/>

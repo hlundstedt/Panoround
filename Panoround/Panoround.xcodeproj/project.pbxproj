@@ -26,6 +26,7 @@
 		21A374CE192D30C800BFED62 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A374CD192D30C800BFED62 /* Photo.m */; };
 		21A374D1192D408700BFED62 /* Panoramas.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A374D0192D408700BFED62 /* Panoramas.m */; };
 		21A374D4192E858300BFED62 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A374D3192E858300BFED62 /* PhotoCell.m */; };
+		AFE927D519A3AC3D0023850F /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE927D419A3AC3D0023850F /* CALayer+XibConfiguration.m */; };
 		AFEBD9F7199CB84E00B86FF6 /* StackLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEBD9F6199CB84E00B86FF6 /* StackLayout.m */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,8 @@
 		21A374D2192E858300BFED62 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
 		21A374D3192E858300BFED62 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
 		34947A30944B44FD8A25A35F /* Pods-Panoround.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panoround.xcconfig"; path = "Pods/Pods-Panoround.xcconfig"; sourceTree = "<group>"; };
+		AFE927D319A3AC3D0023850F /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
+		AFE927D419A3AC3D0023850F /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		AFEBD9F5199CB84E00B86FF6 /* StackLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackLayout.h; sourceTree = "<group>"; };
 		AFEBD9F6199CB84E00B86FF6 /* StackLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +150,8 @@
 				21A374D3192E858300BFED62 /* PhotoCell.m */,
 				AFEBD9F5199CB84E00B86FF6 /* StackLayout.h */,
 				AFEBD9F6199CB84E00B86FF6 /* StackLayout.m */,
+				AFE927D319A3AC3D0023850F /* CALayer+XibConfiguration.h */,
+				AFE927D419A3AC3D0023850F /* CALayer+XibConfiguration.m */,
 			);
 			path = Panoround;
 			sourceTree = "<group>";
@@ -330,6 +335,7 @@
 				21A374D4192E858300BFED62 /* PhotoCell.m in Sources */,
 				21A374A0192D2C4800BFED62 /* main.m in Sources */,
 				21A374CE192D30C800BFED62 /* Photo.m in Sources */,
+				AFE927D519A3AC3D0023850F /* CALayer+XibConfiguration.m in Sources */,
 				21A374CA192D2CD500BFED62 /* PhotoManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
