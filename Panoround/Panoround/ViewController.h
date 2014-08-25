@@ -13,6 +13,6 @@
 
 @interface ViewController : UIViewController <UICollectionViewDataSource, StackLayoutDelegate, PhotoManagerDelegate>
 
-@property (nonatomic, strong) NSMutableArray<Photo> *photos;
+@property (nonatomic, strong) NSMutableArray *photos;
 
 @end

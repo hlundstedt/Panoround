@@ -1,5 +1,5 @@
 //
-//  TetrisLayout.h
+//  StackLayout.h
 //  Panoround
 //
 //  Created by Henrik Lundstedt on 2014-08-14.

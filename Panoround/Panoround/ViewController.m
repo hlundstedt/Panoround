@@ -19,6 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    [_collectionView.viewForBaselineLayout.layer setSpeed:0.1f];
+    _photos = [NSMutableArray array];
     ((StackLayout*) _collectionView.collectionViewLayout).customDataSource = self;
 	[PhotoManager getPanoramasFromLocation:CLLocationCoordinate2DMake(55.7058400, 13.1932100) distance:5000 delegate:self];
 }
@@ -31,10 +33,15 @@
 
 - (void)receivedPanoramas:(Panoramas *)panoramas
 {
-    _photos = [panoramas.photos mutableCopy];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_collectionView reloadData];
-    });
+    for (int i=0; i<panoramas.photos.count; i++) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_photos addObject:[panoramas.photos objectAtIndex:i]];
+            NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
+            [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+            [_collectionView insertItemsAtIndexPaths:arrayWithIndexPaths];
+        });
+        [NSThread sleepForTimeInterval:0.2];
+    }
     for (Photo *photo in _photos) {
         NSLog(@"Received photo with dimesions (%d, %d)", photo.width, photo.height);
     }
