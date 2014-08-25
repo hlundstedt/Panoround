@@ -13,6 +13,8 @@
 
 @interface ViewController : UIViewController <UICollectionViewDataSource, StackLayoutDelegate, PhotoManagerDelegate>
 
+@property (nonatomic, weak) IBOutlet StackLayout *stackLayout;
+
 @property (nonatomic, strong) NSMutableArray *photos;
 
 @end

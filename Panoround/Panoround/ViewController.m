@@ -21,7 +21,7 @@
     [super viewDidLoad];
 //    [_collectionView.viewForBaselineLayout.layer setSpeed:0.1f];
     _photos = [NSMutableArray array];
-    ((StackLayout*) _collectionView.collectionViewLayout).customDataSource = self;
+    _stackLayout.customDataSource = self;
 	[PhotoManager getPanoramasFromLocation:CLLocationCoordinate2DMake(55.7058400, 13.1932100) distance:5000 delegate:self];
 }
 
@@ -88,6 +88,18 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     // TODO: Deselect item
+}
+
+#pragma mark - View Rotation
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                duration:(NSTimeInterval)duration
+{
+    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+        
+    } else {
+        
+    }
 }
 
 @end
