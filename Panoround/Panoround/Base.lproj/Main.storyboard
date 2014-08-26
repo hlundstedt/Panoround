@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ruU-PD-Mez">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ruU-PD-Mez">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -78,6 +78,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ruU-PD-Mez" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="IJe-Kr-0F4"/>
+                            <constraint firstItem="ruU-PD-Mez" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kEz-MP-XQS"/>
+                            <constraint firstAttribute="trailing" secondItem="ruU-PD-Mez" secondAttribute="trailing" id="lsc-U8-tua"/>
+                            <constraint firstAttribute="bottom" secondItem="ruU-PD-Mez" secondAttribute="bottom" id="t7H-1J-c24"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="ruU-PD-Mez" id="99g-1a-wZP"/>

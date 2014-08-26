@@ -22,6 +22,7 @@
 //    [_collectionView.viewForBaselineLayout.layer setSpeed:0.1f];
     _photos = [NSMutableArray array];
     _stackLayout.customDataSource = self;
+    [_stackLayout setIsPortrait: UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])];
 	[PhotoManager getPanoramasFromLocation:CLLocationCoordinate2DMake(55.7058400, 13.1932100) distance:5000 delegate:self];
 }
 
@@ -95,11 +96,7 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration
 {
-    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-        
-    } else {
-        
-    }
+    [_stackLayout setOrientationPortrait:UIInterfaceOrientationIsPortrait(toInterfaceOrientation)];
 }
 
 @end
