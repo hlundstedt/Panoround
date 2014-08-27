@@ -1,20 +1,20 @@
 //
-//  ViewController.m
+//  GalleryViewController.m
 //  Panoround
 //
 //  Created by Henrik Lundstedt on 5/21/14.
 //  Copyright (c) 2014 Macadamian. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "GalleryViewController.h"
 
-@interface ViewController ()
+@interface GalleryViewController ()
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
 @end
 
-@implementation ViewController
+@implementation GalleryViewController
 
 - (void)viewDidLoad
 {
@@ -84,7 +84,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: Select Item
+    [self performSegueWithIdentifier:@"showPhoto" sender:self];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -97,6 +97,15 @@
                                 duration:(NSTimeInterval)duration
 {
     [_stackLayout setOrientationPortrait:UIInterfaceOrientationIsPortrait(toInterfaceOrientation)];
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showPhoto"]) {
+        PhotoViewController *viewController = (PhotoViewController*) [segue destinationViewController];
+        viewController.photo = [_photos objectAtIndex:[[[self.collectionView indexPathsForSelectedItems] objectAtIndex:0] row]];
+    }
 }
 
 @end

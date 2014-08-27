@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define DEFAULT_NUMBER_OF_COLUMNS 3
-#define DEFAULT_NUMBER_OF_ROWS 4
+#define DEFAULT_NUMBER_OF_ROWS 3
 
 @protocol StackLayoutDelegate
 
