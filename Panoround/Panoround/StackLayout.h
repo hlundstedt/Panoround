@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSMutableArray *rowWidths;
 @property (nonatomic, strong) NSMutableArray *indexPathsToAnimate;
 @property (nonatomic, strong) NSDictionary *layoutInfo;
+@property (nonatomic, strong) NSMutableDictionary *finalLayout;
 @property (nonatomic) CGSize collectionViewContentSize;
 
 - (void)setNumberOfColumns:(NSInteger)numberOfColumns;

@@ -14,6 +14,7 @@
 
 @interface GalleryViewController : UIViewController <UICollectionViewDataSource, StackLayoutDelegate, PhotoManagerDelegate>
 
+@property (nonatomic, weak) IBOutlet UISegmentedControl *areaControl;
 @property (nonatomic, weak) IBOutlet StackLayout *stackLayout;
 @property (nonatomic, strong) NSMutableArray *photos;
 

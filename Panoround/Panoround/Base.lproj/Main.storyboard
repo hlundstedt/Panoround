@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="dmn-gs-HXp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="dmn-gs-HXp">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -16,14 +16,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WT8-UJ-jAY">
+                                <rect key="frame" x="0.0" y="64" width="768" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="uWS-V4-OhE">
+                                        <rect key="frame" x="448" y="18" width="300" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="cOD-mg-ZKa"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="1 km"/>
+                                            <segment title="5 km"/>
+                                            <segment title="10 km"/>
+                                            <segment title="50 km"/>
+                                            <segment title="100 km"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="areaControlAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="xwe-dK-i5U"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="uWS-V4-OhE" secondAttribute="centerY" id="LTb-eW-RRq"/>
+                                    <constraint firstAttribute="trailing" secondItem="uWS-V4-OhE" secondAttribute="trailing" constant="20" id="wPx-KN-SLa"/>
+                                    <constraint firstAttribute="height" constant="64" id="xqs-9e-FQw"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ruU-PD-Mez">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="128" width="768" height="896"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewLayout key="collectionViewLayout" id="A5x-kf-yq5" customClass="StackLayout"/>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="hBl-fu-z2t">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="896"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="jcY-LH-bWl" customClass="PhotoCell">
-                                        <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -79,7 +112,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ruU-PD-Mez" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="IJe-Kr-0F4"/>
+                            <constraint firstItem="ruU-PD-Mez" firstAttribute="top" secondItem="WT8-UJ-jAY" secondAttribute="bottom" id="2jF-Gg-r7B"/>
+                            <constraint firstAttribute="trailing" secondItem="WT8-UJ-jAY" secondAttribute="trailing" id="817-bG-SBq"/>
+                            <constraint firstItem="y3c-jy-aDJ" firstAttribute="bottom" secondItem="WT8-UJ-jAY" secondAttribute="top" id="M8U-Ur-9eW"/>
+                            <constraint firstItem="WT8-UJ-jAY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VRT-DM-FOA"/>
                             <constraint firstItem="ruU-PD-Mez" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kEz-MP-XQS"/>
                             <constraint firstAttribute="trailing" secondItem="ruU-PD-Mez" secondAttribute="trailing" id="lsc-U8-tua"/>
                             <constraint firstAttribute="bottom" secondItem="ruU-PD-Mez" secondAttribute="bottom" id="t7H-1J-c24"/>
@@ -87,7 +123,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="QfT-BP-i8D"/>
                     <connections>
+                        <outlet property="areaControl" destination="uWS-V4-OhE" id="eQq-JR-vaJ"/>
                         <outlet property="collectionView" destination="ruU-PD-Mez" id="99g-1a-wZP"/>
+                        <outlet property="indicator" destination="hBl-fu-z2t" id="45c-ul-K2z"/>
                         <outlet property="stackLayout" destination="A5x-kf-yq5" id="vGi-fv-Jmh"/>
                         <segue destination="CCJ-OM-Gr6" kind="push" identifier="showPhoto" id="wCD-gD-OzU"/>
                     </connections>

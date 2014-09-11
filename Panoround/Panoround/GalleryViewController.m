@@ -11,6 +11,8 @@
 @interface GalleryViewController ()
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *indicator;
+@property (nonatomic, strong) NSArray *areaDistances;
 
 @end
 
@@ -19,11 +21,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [_collectionView.viewForBaselineLayout.layer setSpeed:0.1f];
+//    [_collectionView.viewForBaselineLayout.layer setSpeed:0.2f];
+    _areaDistances = @[@1000, @5000, @10000, @50000, @100000];
     _photos = [NSMutableArray array];
+    [_areaControl sendActionsForControlEvents:UIControlEventValueChanged];
+    
     _stackLayout.customDataSource = self;
     [_stackLayout setIsPortrait: UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])];
-	[PhotoManager getPanoramasFromLocation:CLLocationCoordinate2DMake(55.7058400, 13.1932100) distance:5000 delegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -32,20 +36,51 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)areaControlAction:(id)sender
+{
+    [self clearPhotos];
+    int distance = [[_areaDistances objectAtIndex:_areaControl.selectedSegmentIndex] intValue];
+    [self setDownloadIndicatorEnabled:YES];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [PhotoManager getPanoramasFromLocation:CLLocationCoordinate2DMake(51.5073, -0.1277) distance:distance delegate:self];
+    });
+    // Lund 55.7058400, 13.1932100
+}
+
+- (void)clearPhotos
+{
+    [_collectionView performBatchUpdates:^{
+        int photoCount = _photos.count;
+        NSMutableArray *arrayWithIndexPathsRemove = [NSMutableArray array];
+        
+        [_photos removeAllObjects];
+        for (int i=0; i<photoCount; i++) {
+            [arrayWithIndexPathsRemove addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+        [_collectionView deleteItemsAtIndexPaths:arrayWithIndexPathsRemove];
+    } completion:nil];
+}
+
+- (void)setDownloadIndicatorEnabled:(BOOL)enabled
+{
+    [_indicator setHidden:!enabled];
+    enabled ? [_indicator startAnimating] : [_indicator startAnimating];
+}
+
 - (void)receivedPanoramas:(Panoramas *)panoramas
 {
-    for (int i=0; i<panoramas.photos.count; i++) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_photos addObject:[panoramas.photos objectAtIndex:i]];
-            NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
-            [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-            [_collectionView insertItemsAtIndexPaths:arrayWithIndexPaths];
-        });
-        [NSThread sleepForTimeInterval:0.2];
-    }
-    for (Photo *photo in _photos) {
-        NSLog(@"Received photo with dimesions (%d, %d)", photo.width, photo.height);
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setDownloadIndicatorEnabled:NO];
+        [_collectionView performBatchUpdates:^{
+            NSMutableArray *arrayWithIndexPathsInsert = [NSMutableArray array];
+            
+            for (int i=0; i<panoramas.photos.count; i++) {
+                [_photos addObject:[panoramas.photos objectAtIndex:i]];
+                [arrayWithIndexPathsInsert addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+            }
+            [_collectionView insertItemsAtIndexPaths:arrayWithIndexPathsInsert];
+        } completion:nil];
+    });
 }
 
 - (void)getPanoramasFailedWithError:(NSError *)error

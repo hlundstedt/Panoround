@@ -35,6 +35,7 @@
     _numberOfColumns = DEFAULT_NUMBER_OF_COLUMNS;
     _numberOfRows = DEFAULT_NUMBER_OF_ROWS;
     _isPortrait = true;
+    _finalLayout = [NSMutableDictionary dictionary];
 }
 
 #pragma mark - StackLayout
@@ -175,19 +176,27 @@
 }
 
 - (UICollectionViewLayoutAttributes*)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
-    UICollectionViewLayoutAttributes *attrs = [[self layoutAttributesForItemAtIndexPath:itemIndexPath] copy];
+    UICollectionViewLayoutAttributes *attr = [[self layoutAttributesForItemAtIndexPath:itemIndexPath] copy];
     
     if ([_indexPathsToAnimate containsObject:itemIndexPath]) {
-        attrs.frame = _isPortrait ? CGRectMake(attrs.frame.origin.x, MAX(self.collectionView.frame.size.height, _contentHeight), attrs.frame.size.width, attrs.frame.size.height) : CGRectMake(MAX(self.collectionView.frame.size.width, _contentWidth), attrs.frame.origin.y, attrs.frame.size.width, attrs.frame.size.height);
+        attr.frame = _isPortrait ? CGRectMake(attr.frame.origin.x, MAX(self.collectionView.frame.size.height, _contentHeight), attr.frame.size.width, attr.frame.size.height) : CGRectMake(MAX(self.collectionView.frame.size.width, _contentWidth), attr.frame.origin.y, attr.frame.size.width, attr.frame.size.height);
         [_indexPathsToAnimate removeObject:itemIndexPath];
     }
+    _finalLayout[itemIndexPath] = attr;
     
-    return attrs;
+    return attr;
 }
 
 - (UICollectionViewLayoutAttributes*)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
-    return [self initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
+    UICollectionViewLayoutAttributes *attr = [[self layoutAttributesForItemAtIndexPath:itemIndexPath] copy];
+    
+    if ([_indexPathsToAnimate containsObject:itemIndexPath]) {
+        attr = _finalLayout[itemIndexPath];
+        [_indexPathsToAnimate removeObject:itemIndexPath];
+    }
+    
+    return attr;
 }
 
 - (void)prepareForCollectionViewUpdates:(NSArray *)updateItems
@@ -207,7 +216,7 @@
                 [indexPaths addObject:updateItem.indexPathAfterUpdate];
                 break;
             default:
-                NSLog(@"unhandled case: %@", updateItem);
+                NSLog(@"Unhandled case: %@", updateItem);
                 break;
         }
     }
