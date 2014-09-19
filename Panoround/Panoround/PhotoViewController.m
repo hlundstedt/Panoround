@@ -10,8 +10,6 @@
 
 @interface PhotoViewController ()
 
-@property (nonatomic, strong) UIImageView *imageView;
-
 - (void)centerScrollViewContents;
 - (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer;
 - (void)scrollViewTwoFingerTapped:(UITapGestureRecognizer*)recognizer;
@@ -26,17 +24,21 @@
 
 - (void)centerScrollViewContents
 {
-    CGSize boundsSize = _scrollView.bounds.size;
+    CGSize boundsSize = self.view.frame.size;
     CGRect contentsFrame = _imageView.frame;
     
-    if (contentsFrame.size.width < boundsSize.width) {
-        contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
+    BOOL isPortrait = UIDeviceOrientationIsPortrait(self.interfaceOrientation);
+    int boundsWidth = isPortrait ? boundsSize.width : boundsSize.height;
+    int boundsHeight = isPortrait ? boundsSize.height : boundsSize.width;
+    
+    if (contentsFrame.size.width < boundsWidth) {
+        contentsFrame.origin.x = (boundsWidth - contentsFrame.size.width) / 2.0f;
     } else {
         contentsFrame.origin.x = 0.0f;
     }
     
-    if (contentsFrame.size.height < boundsSize.height) {
-        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
+    if (contentsFrame.size.height < boundsHeight) {
+        contentsFrame.origin.y = (boundsHeight - contentsFrame.size.height) / 2.0f;
     } else {
         contentsFrame.origin.y = 0.0f;
     }
@@ -59,12 +61,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBar.translucent = NO;
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _photo.width, _photo.height)];
     [_imageView sd_setImageWithURL:_photo.photo_file_url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageUrl) {
         // Loading complete
     }];
     [_scrollView addSubview:_imageView];
     _scrollView.contentSize = _imageView.frame.size;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (self.navigationController.delegate == self) {
+        self.navigationController.delegate = nil;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,6 +99,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UINavigationControllerDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController *)fromVC
+                                                 toViewController:(UIViewController *)toVC {
+    if (fromVC == self && [toVC isKindOfClass:[GalleryViewController class]]) {
+        return [[FromPhotoTransition alloc] init];
+    }
+    
+    return nil;
 }
 
 @end

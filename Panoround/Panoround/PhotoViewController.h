@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Photo.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "FromPhotoTransition.h"
+#import "GalleryViewController.h"
+#import "Photo.h"
 
-@interface PhotoViewController : UIViewController <UIScrollViewDelegate>
+@interface PhotoViewController : UIViewController <UIScrollViewDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
+@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) Photo *photo;
 
 @end

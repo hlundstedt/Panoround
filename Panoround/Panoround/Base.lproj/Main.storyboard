@@ -132,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1104" y="-158"/>
+            <point key="canvasLocation" x="1168" y="-158"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="utm-Pq-2g1">
@@ -154,7 +154,7 @@
                                 </connections>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="MG6-Ze-Pim" secondAttribute="trailing" id="aLf-bU-9mz"/>
                             <constraint firstItem="MG6-Ze-Pim" firstAttribute="top" secondItem="dRr-h4-5eS" secondAttribute="top" id="irA-sq-guN"/>

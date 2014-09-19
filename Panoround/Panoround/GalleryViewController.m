@@ -10,7 +10,6 @@
 
 @interface GalleryViewController ()
 
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *indicator;
 @property (nonatomic, strong) NSArray *areaDistances;
 
@@ -21,6 +20,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBar.translucent = NO;
+    
 //    [_collectionView.viewForBaselineLayout.layer setSpeed:0.2f];
     _areaDistances = @[@1000, @5000, @10000, @50000, @100000];
     _photos = [NSMutableArray array];
@@ -28,6 +29,20 @@
     
     _stackLayout.customDataSource = self;
     [_stackLayout setIsPortrait: UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.navigationController.delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (self.navigationController.delegate == self) {
+        self.navigationController.delegate = nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -136,11 +151,26 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     if ([segue.identifier isEqualToString:@"showPhoto"]) {
         PhotoViewController *viewController = (PhotoViewController*) [segue destinationViewController];
         viewController.photo = [_photos objectAtIndex:[[[self.collectionView indexPathsForSelectedItems] objectAtIndex:0] row]];
     }
+}
+
+#pragma mark - UINavigationControllerDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController *)fromVC
+                                                 toViewController:(UIViewController *)toVC
+{
+    if (fromVC == self && [toVC isKindOfClass:[PhotoViewController class]]) {
+        return [[ToPhotoTransition alloc] init];
+    }
+    
+    return nil;
 }
 
 @end

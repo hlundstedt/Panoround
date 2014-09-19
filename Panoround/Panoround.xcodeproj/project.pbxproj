@@ -29,6 +29,8 @@
 		AF1FC72919AE14160000EFDB /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1FC72819AE14160000EFDB /* PhotoViewController.m */; };
 		AFE927D519A3AC3D0023850F /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE927D419A3AC3D0023850F /* CALayer+XibConfiguration.m */; };
 		AFEBD9F7199CB84E00B86FF6 /* StackLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEBD9F6199CB84E00B86FF6 /* StackLayout.m */; };
+		AFFAC9C919CB563000D6FDB5 /* ToPhotoTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFAC9C819CB563000D6FDB5 /* ToPhotoTransition.m */; };
+		AFFAC9CD19CB783900D6FDB5 /* FromPhotoTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFAC9CC19CB783900D6FDB5 /* FromPhotoTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,10 @@
 		AFE927D419A3AC3D0023850F /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		AFEBD9F5199CB84E00B86FF6 /* StackLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackLayout.h; sourceTree = "<group>"; };
 		AFEBD9F6199CB84E00B86FF6 /* StackLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackLayout.m; sourceTree = "<group>"; };
+		AFFAC9C719CB563000D6FDB5 /* ToPhotoTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToPhotoTransition.h; sourceTree = "<group>"; };
+		AFFAC9C819CB563000D6FDB5 /* ToPhotoTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToPhotoTransition.m; sourceTree = "<group>"; };
+		AFFAC9CB19CB783900D6FDB5 /* FromPhotoTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FromPhotoTransition.h; sourceTree = "<group>"; };
+		AFFAC9CC19CB783900D6FDB5 /* FromPhotoTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FromPhotoTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 		21A37499192D2C4800BFED62 /* Panoround */ = {
 			isa = PBXGroup;
 			children = (
+				AFFAC9CA19CB77FF00D6FDB5 /* Transitions */,
 				AF1FC72619AE13AA0000EFDB /* ViewControllers */,
 				21A374CB192D309C00BFED62 /* Model */,
 				21A374A2192D2C4800BFED62 /* AppDelegate.h */,
@@ -207,6 +214,17 @@
 				AF1FC72819AE14160000EFDB /* PhotoViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		AFFAC9CA19CB77FF00D6FDB5 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				AFFAC9C719CB563000D6FDB5 /* ToPhotoTransition.h */,
+				AFFAC9C819CB563000D6FDB5 /* ToPhotoTransition.m */,
+				AFFAC9CB19CB783900D6FDB5 /* FromPhotoTransition.h */,
+				AFFAC9CC19CB783900D6FDB5 /* FromPhotoTransition.m */,
+			);
+			name = Transitions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,7 +360,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				21A374D1192D408700BFED62 /* Panoramas.m in Sources */,
+				AFFAC9CD19CB783900D6FDB5 /* FromPhotoTransition.m in Sources */,
 				21A374AA192D2C4800BFED62 /* GalleryViewController.m in Sources */,
+				AFFAC9C919CB563000D6FDB5 /* ToPhotoTransition.m in Sources */,
 				AFEBD9F7199CB84E00B86FF6 /* StackLayout.m in Sources */,
 				21A374A4192D2C4800BFED62 /* AppDelegate.m in Sources */,
 				21A374D4192E858300BFED62 /* PhotoCell.m in Sources */,
@@ -478,10 +498,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tony Hooper (6K5UPX395A)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Panoround/Panoround-Prefix.pch";
 				INFOPLIST_FILE = "Panoround/Panoround-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CD23CFFB-8E5A-4865-88A3-A12A8B6AAB40";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -492,10 +514,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tony Hooper (6K5UPX395A)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Panoround/Panoround-Prefix.pch";
 				INFOPLIST_FILE = "Panoround/Panoround-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CD23CFFB-8E5A-4865-88A3-A12A8B6AAB40";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
