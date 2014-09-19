@@ -27,18 +27,14 @@
     CGSize boundsSize = self.view.frame.size;
     CGRect contentsFrame = _imageView.frame;
     
-    BOOL isPortrait = UIDeviceOrientationIsPortrait(self.interfaceOrientation);
-    int boundsWidth = isPortrait ? boundsSize.width : boundsSize.height;
-    int boundsHeight = isPortrait ? boundsSize.height : boundsSize.width;
-    
-    if (contentsFrame.size.width < boundsWidth) {
-        contentsFrame.origin.x = (boundsWidth - contentsFrame.size.width) / 2.0f;
+    if (contentsFrame.size.width < boundsSize.width) {
+        contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
     } else {
         contentsFrame.origin.x = 0.0f;
     }
     
-    if (contentsFrame.size.height < boundsHeight) {
-        contentsFrame.origin.y = (boundsHeight - contentsFrame.size.height) / 2.0f;
+    if (contentsFrame.size.height < boundsSize.height) {
+        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
     } else {
         contentsFrame.origin.y = 0.0f;
     }
