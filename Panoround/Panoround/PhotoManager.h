@@ -10,11 +10,12 @@
 #import <MapKit/MapKit.h>
 #import "Panoramas.h"
 
-#define URL_TEMPLATE @"http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=100&minx=%f&miny=%f&maxx=%f&maxy=%f&size=medium"
+#define URL_TEMPLATE_MEDIUM @"http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=100&minx=%f&miny=%f&maxx=%f&maxy=%f&size=medium"
+#define URL_TEMPLATE_ORIGINAL @"http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=100&minx=%f&miny=%f&maxx=%f&maxy=%f&size=original"
 
 @protocol PhotoManagerDelegate <NSObject>
 
-- (void)receivedPanoramas:(Panoramas *)panoramas;
+- (void)receivedMediumPanoramas:(Panoramas *)mediumPanoramas originalPanoramas:(Panoramas *)originalPanoramas;
 - (void)getPanoramasFailedWithError:(NSError *)error;
 
 @end

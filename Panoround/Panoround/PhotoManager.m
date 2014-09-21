@@ -19,20 +19,37 @@
     double lonMin = region.center.longitude - .5 * region.span.longitudeDelta;
     double lonMax = region.center.longitude + .5 * region.span.longitudeDelta;
     
-    NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:URL_TEMPLATE, lonMin, latMin, lonMax, latMax, nil]];
-    NSLog(@"Getting panoramas from %@", [url absoluteString]);
+    NSURL *mediumPanormasUrl = [[NSURL alloc] initWithString:[NSString stringWithFormat:URL_TEMPLATE_MEDIUM, lonMin, latMin, lonMax, latMax, nil]];
+    NSURL *originalPanormasUrl = [[NSURL alloc] initWithString:[NSString stringWithFormat:URL_TEMPLATE_ORIGINAL, lonMin, latMin, lonMax, latMax, nil]];
     
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init]
+    __block Panoramas *mediumPanoramas = nil;
+    __block Panoramas *originalPanoramas = nil;
+    
+    NSLog(@"Getting medium panoramas from %@", [mediumPanormasUrl absoluteString]);
+    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:mediumPanormasUrl] queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        if (error) {
-            [delegate getPanoramasFailedWithError:error];
-        } else {
-            Panoramas *panoramas = [[Panoramas alloc] initWithString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] error:&error];
-            if (error) {
-                [delegate getPanoramasFailedWithError:error];
-            }
-            [delegate receivedPanoramas:panoramas];
-        }
+       if (error) {
+           [delegate getPanoramasFailedWithError:error];
+       } else {
+           mediumPanoramas = [[Panoramas alloc] initWithString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] error:&error];
+           if (error) {
+               [delegate getPanoramasFailedWithError:error];
+           } else {
+               NSLog(@"Getting original panoramas from %@", [originalPanormasUrl absoluteString]);
+               [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:originalPanormasUrl] queue:[[NSOperationQueue alloc] init]completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                   if (error) {
+                       [delegate getPanoramasFailedWithError:error];
+                   } else {
+                       originalPanoramas = [[Panoramas alloc] initWithString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] error:&error];
+                       if (error) {
+                           [delegate getPanoramasFailedWithError:error];
+                       } else {
+                           [delegate receivedMediumPanoramas:mediumPanoramas originalPanoramas:originalPanoramas];
+                       }
+                   }
+                }];
+           }
+       }
     }];
 }
 

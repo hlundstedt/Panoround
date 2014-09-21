@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *indicator;
 @property (nonatomic, strong) NSArray *areaDistances;
+@property (nonatomic, strong) Panoramas *originalPanoramas;
 
 @end
 
@@ -82,15 +83,16 @@
     enabled ? [_indicator startAnimating] : [_indicator startAnimating];
 }
 
-- (void)receivedPanoramas:(Panoramas *)panoramas
+- (void)receivedMediumPanoramas:(Panoramas *)mediumPanoramas originalPanoramas:(Panoramas *)originalPanoramas
 {
+    _originalPanoramas = originalPanoramas;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setDownloadIndicatorEnabled:NO];
         [_collectionView performBatchUpdates:^{
             NSMutableArray *arrayWithIndexPathsInsert = [NSMutableArray array];
             
-            for (int i=0; i<panoramas.photos.count; i++) {
-                [_photos addObject:[panoramas.photos objectAtIndex:i]];
+            for (int i=0; i<mediumPanoramas.photos.count; i++) {
+                [_photos addObject:[mediumPanoramas.photos objectAtIndex:i]];
                 [arrayWithIndexPathsInsert addObject:[NSIndexPath indexPathForRow:i inSection:0]];
             }
             [_collectionView insertItemsAtIndexPaths:arrayWithIndexPathsInsert];
@@ -155,7 +157,9 @@
 {
     if ([segue.identifier isEqualToString:@"showPhoto"]) {
         PhotoViewController *viewController = (PhotoViewController*) [segue destinationViewController];
-        viewController.photo = [_photos objectAtIndex:[[[self.collectionView indexPathsForSelectedItems] objectAtIndex:0] row]];
+        NSInteger index = [[[self.collectionView indexPathsForSelectedItems] objectAtIndex:0] row];
+        viewController.mediumPhoto = [_photos objectAtIndex:index];
+        viewController.originalPhoto = [_originalPanoramas.photos objectAtIndex:index];
     }
 }
 

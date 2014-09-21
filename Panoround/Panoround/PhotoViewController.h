@@ -17,6 +17,7 @@
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) Photo *photo;
+@property (nonatomic, strong) Photo *mediumPhoto;
+@property (nonatomic, strong) Photo *originalPhoto;
 
 @end

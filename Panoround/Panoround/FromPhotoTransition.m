@@ -18,22 +18,20 @@
     UIView *containerView = [transitionContext containerView];
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     
-    UIView *imageSnapshot = [photoViewController.imageView snapshotViewAfterScreenUpdates:NO];
-    imageSnapshot.frame = [containerView convertRect:photoViewController.imageView.frame fromView:photoViewController.imageView.superview];
-    photoViewController.imageView.hidden = YES;
-    
     PhotoCell *cell = (PhotoCell*)[galleryViewController.collectionView cellForItemAtIndexPath:[[galleryViewController.collectionView indexPathsForSelectedItems] firstObject]];
     cell.imageView.hidden = YES;
     
-    photoViewController.view.frame = [transitionContext finalFrameForViewController:galleryViewController];
+    UIImageView *imageSnapshot = [[UIImageView alloc] initWithImage:cell.imageView.image];
+    imageSnapshot.frame = [containerView convertRect:photoViewController.imageView.frame fromView:photoViewController.imageView.superview];
     
-    [containerView addSubview:photoViewController.view];
+    photoViewController.imageView.hidden = YES;
+    
+    galleryViewController.view.frame = [transitionContext finalFrameForViewController:galleryViewController];
     [containerView insertSubview:galleryViewController.view belowSubview:photoViewController.view];
     [containerView addSubview:imageSnapshot];
     
     [UIView animateWithDuration:duration animations:^{
         photoViewController.view.alpha = 0;
-        
         imageSnapshot.frame = [containerView convertRect:cell.imageView.frame fromView:cell.imageView.superview];
     } completion:^(BOOL finished) {
         [imageSnapshot removeFromSuperview];
