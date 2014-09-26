@@ -29,7 +29,13 @@
     [_areaControl sendActionsForControlEvents:UIControlEventValueChanged];
     
     _stackLayout.customDataSource = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [_stackLayout setIsPortrait: UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])];
+    [_stackLayout invalidateLayout];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -149,6 +155,7 @@
                                 duration:(NSTimeInterval)duration
 {
     [_stackLayout setOrientationPortrait:UIInterfaceOrientationIsPortrait(toInterfaceOrientation)];
+    [_collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 #pragma mark - Navigation

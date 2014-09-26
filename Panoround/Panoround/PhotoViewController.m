@@ -127,6 +127,13 @@
     [self centerScrollViewContents];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    _scrollView.contentSize = CGSizeMake(_originalPhoto.width, _originalPhoto.height);
+    [self setupScrollView];
+    [self centerScrollViewContents];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
