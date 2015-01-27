@@ -11,6 +11,10 @@
 @interface GalleryViewController ()
 
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *indicator;
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *lastLocation;
+@property (nonatomic, strong) NSTimer *locationTimer;
 @property (nonatomic, strong) NSArray *areaDistances;
 @property (nonatomic, strong) Panoramas *originalPanoramas;
 
@@ -26,9 +30,17 @@
 //    [_collectionView.viewForBaselineLayout.layer setSpeed:0.2f];
     _areaDistances = @[@1000, @5000, @10000, @50000, @100000];
     _photos = [NSMutableArray array];
-    [_areaControl sendActionsForControlEvents:UIControlEventValueChanged];
-    
     _stackLayout.customDataSource = self;
+    _lastLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
+    
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    _locationManager.distanceFilter = 300;
+    if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [_locationManager requestWhenInUseAuthorization];
+    }
+    [_locationManager startUpdatingLocation];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -64,7 +76,7 @@
     int distance = [[_areaDistances objectAtIndex:_areaControl.selectedSegmentIndex] intValue];
     [self setDownloadIndicatorEnabled:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [PhotoManager getPanoramasFromLocation:CLLocationCoordinate2DMake(51.5073, -0.1277) distance:distance delegate:self];
+        [PhotoManager getPanoramasFromLocation:_lastLocation.coordinate distance:distance delegate:self];
     });
     // Lund 55.7058400, 13.1932100
 }
@@ -87,6 +99,27 @@
 {
     [_indicator setHidden:!enabled];
     enabled ? [_indicator startAnimating] : [_indicator startAnimating];
+}
+
+- (void)turnOnLocationManager
+{
+    _locationManager.delegate = self;
+    [_locationManager startUpdatingLocation];
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *newLocation = [locations lastObject];
+    if ([newLocation distanceFromLocation:_lastLocation] > 200) {
+        _lastLocation = newLocation;
+        [_areaControl sendActionsForControlEvents:UIControlEventValueChanged];
+    }
+    [_locationManager stopUpdatingLocation];
+    _locationManager.delegate = nil;
+    _locationTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(turnOnLocationManager)
+                                                    userInfo:nil repeats:NO];
 }
 
 - (void)receivedMediumPanoramas:(Panoramas *)mediumPanoramas originalPanoramas:(Panoramas *)originalPanoramas

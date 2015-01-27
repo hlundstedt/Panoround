@@ -26,6 +26,7 @@
 		21A374CE192D30C800BFED62 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A374CD192D30C800BFED62 /* Photo.m */; };
 		21A374D1192D408700BFED62 /* Panoramas.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A374D0192D408700BFED62 /* Panoramas.m */; };
 		21A374D4192E858300BFED62 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A374D3192E858300BFED62 /* PhotoCell.m */; };
+		AF128AC01A781DD700767FF8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF128ABF1A781DD700767FF8 /* CoreLocation.framework */; };
 		AF1FC72919AE14160000EFDB /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1FC72819AE14160000EFDB /* PhotoViewController.m */; };
 		AFE927D519A3AC3D0023850F /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE927D419A3AC3D0023850F /* CALayer+XibConfiguration.m */; };
 		AFEBD9F7199CB84E00B86FF6 /* StackLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEBD9F6199CB84E00B86FF6 /* StackLayout.m */; };
@@ -73,6 +74,7 @@
 		21A374D2192E858300BFED62 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
 		21A374D3192E858300BFED62 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
 		34947A30944B44FD8A25A35F /* Pods-Panoround.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panoround.xcconfig"; path = "Pods/Pods-Panoround.xcconfig"; sourceTree = "<group>"; };
+		AF128ABF1A781DD700767FF8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		AF1FC72719AE14160000EFDB /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		AF1FC72819AE14160000EFDB /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		AFE927D319A3AC3D0023850F /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF128AC01A781DD700767FF8 /* CoreLocation.framework in Frameworks */,
 				21A37496192D2C4800BFED62 /* CoreGraphics.framework in Frameworks */,
 				21A37498192D2C4800BFED62 /* UIKit.framework in Frameworks */,
 				21A37494192D2C4800BFED62 /* Foundation.framework in Frameworks */,
@@ -133,6 +136,7 @@
 		21A37492192D2C4800BFED62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AF128ABF1A781DD700767FF8 /* CoreLocation.framework */,
 				21A37493192D2C4800BFED62 /* Foundation.framework */,
 				21A37495192D2C4800BFED62 /* CoreGraphics.framework */,
 				21A37497192D2C4800BFED62 /* UIKit.framework */,
@@ -276,6 +280,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Macadamian;
 				TargetAttributes = {
+					21A3748F192D2C4800BFED62 = {
+						DevelopmentTeam = 8PTYFUGS8F;
+					};
 					21A374B0192D2C4800BFED62 = {
 						TestTargetID = 21A3748F192D2C4800BFED62;
 					};
@@ -498,12 +505,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tony Hooper (6K5UPX395A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Panoround/Panoround-Prefix.pch";
 				INFOPLIST_FILE = "Panoround/Panoround-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CD23CFFB-8E5A-4865-88A3-A12A8B6AAB40";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -514,12 +522,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tony Hooper (6K5UPX395A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Panoround/Panoround-Prefix.pch";
 				INFOPLIST_FILE = "Panoround/Panoround-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CD23CFFB-8E5A-4865-88A3-A12A8B6AAB40";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

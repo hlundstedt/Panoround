@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "PhotoManager.h"
 #import "PhotoCell.h"
 #import "StackLayout.h"
 #import "PhotoViewController.h"
 #import "ToPhotoTransition.h"
 
-@interface GalleryViewController : UIViewController <UICollectionViewDataSource, UINavigationControllerDelegate, StackLayoutDelegate, PhotoManagerDelegate>
+@interface GalleryViewController : UIViewController <UICollectionViewDataSource, UINavigationControllerDelegate, CLLocationManagerDelegate, StackLayoutDelegate, PhotoManagerDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *areaControl;
