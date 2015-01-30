@@ -32,6 +32,8 @@
 		AFEBD9F7199CB84E00B86FF6 /* StackLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEBD9F6199CB84E00B86FF6 /* StackLayout.m */; };
 		AFFAC9C919CB563000D6FDB5 /* ToPhotoTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFAC9C819CB563000D6FDB5 /* ToPhotoTransition.m */; };
 		AFFAC9CD19CB783900D6FDB5 /* FromPhotoTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFAC9CC19CB783900D6FDB5 /* FromPhotoTransition.m */; };
+		AFFB68341A7BBA29007111A9 /* InfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFFB68331A7BBA29007111A9 /* InfoPopover.xib */; };
+		AFFB68371A7BBC10007111A9 /* InfoPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFB68361A7BBC10007111A9 /* InfoPopover.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,9 @@
 		AFFAC9C819CB563000D6FDB5 /* ToPhotoTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToPhotoTransition.m; sourceTree = "<group>"; };
 		AFFAC9CB19CB783900D6FDB5 /* FromPhotoTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FromPhotoTransition.h; sourceTree = "<group>"; };
 		AFFAC9CC19CB783900D6FDB5 /* FromPhotoTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FromPhotoTransition.m; sourceTree = "<group>"; };
+		AFFB68331A7BBA29007111A9 /* InfoPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoPopover.xib; sourceTree = "<group>"; };
+		AFFB68351A7BBC10007111A9 /* InfoPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPopover.h; sourceTree = "<group>"; };
+		AFFB68361A7BBC10007111A9 /* InfoPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPopover.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				AFFAC9CA19CB77FF00D6FDB5 /* Transitions */,
+				AFFB68321A7BB9EE007111A9 /* Views */,
 				AF1FC72619AE13AA0000EFDB /* ViewControllers */,
 				21A374CB192D309C00BFED62 /* Model */,
 				21A374A2192D2C4800BFED62 /* AppDelegate.h */,
@@ -229,6 +235,16 @@
 				AFFAC9CC19CB783900D6FDB5 /* FromPhotoTransition.m */,
 			);
 			name = Transitions;
+			sourceTree = "<group>";
+		};
+		AFFB68321A7BB9EE007111A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AFFB68331A7BBA29007111A9 /* InfoPopover.xib */,
+				AFFB68351A7BBC10007111A9 /* InfoPopover.h */,
+				AFFB68361A7BBC10007111A9 /* InfoPopover.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +331,7 @@
 				21A374AC192D2C4800BFED62 /* Images.xcassets in Resources */,
 				21A3749E192D2C4800BFED62 /* InfoPlist.strings in Resources */,
 				21A374A7192D2C4800BFED62 /* Main.storyboard in Resources */,
+				AFFB68341A7BBA29007111A9 /* InfoPopover.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21A374D1192D408700BFED62 /* Panoramas.m in Sources */,
+				AFFB68371A7BBC10007111A9 /* InfoPopover.m in Sources */,
 				AFFAC9CD19CB783900D6FDB5 /* FromPhotoTransition.m in Sources */,
 				21A374AA192D2C4800BFED62 /* GalleryViewController.m in Sources */,
 				AFFAC9C919CB563000D6FDB5 /* ToPhotoTransition.m in Sources */,

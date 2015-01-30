@@ -7,8 +7,13 @@
 //
 
 #import "PhotoViewController.h"
+#import "InfoPopover.h"
 
 @interface PhotoViewController ()
+
+@property (nonatomic, strong) UIBarButtonItem *infoBarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *mapBarButtonItem;
+@property (nonatomic, strong) UIPopoverController *infoPopoverController;
 
 - (void)centerScrollViewContents;
 - (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer;
@@ -90,6 +95,10 @@
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
     
+    _infoBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"info_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(didClickInfoButton:)];
+    _mapBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"globe_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(didClickMapButton:)];
+    self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:_infoBarButtonItem, _mapBarButtonItem, nil];
+    
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _originalPhoto.width, _originalPhoto.height)];
     [_imageView sd_setImageWithURL:_originalPhoto.photo_file_url placeholderImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:_mediumPhoto.photo_file_url]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageUrl) {
         // Image loaded
@@ -151,6 +160,33 @@
     }
     
     return nil;
+}
+
+#pragma mark - Actions
+
+- (IBAction)didClickMapButton:(id)sender {
+    
+}
+
+- (IBAction)didClickInfoButton:(id)sender {
+    if (!_infoPopoverController) {
+        InfoPopover *infoPopover = [[InfoPopover alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        infoPopover.title.text = _originalPhoto.photo_title;
+        infoPopover.owner.text = [NSString stringWithFormat:@"taken by %@", _originalPhoto.owner_name];
+        infoPopover.date.text = _originalPhoto.upload_date;
+        
+        CGRect rect = [infoPopover.title.text boundingRectWithSize:CGSizeMake(self.view.bounds.size.width, infoPopover.title.bounds.size.height) options:NSStringDrawingUsesLineFragmentOrigin
+         attributes:@{ NSFontAttributeName : [UIFont boldSystemFontOfSize:17] } context:nil];
+        
+        CGFloat popoverWidth = rect.size.width + 20;
+        UIViewController *popoverContent = [[UIViewController alloc] init];
+        popoverContent.view = infoPopover;
+        popoverContent.preferredContentSize = CGSizeMake(popoverWidth, infoPopover.bounds.size.height);
+        
+        _infoPopoverController = [[UIPopoverController alloc] initWithContentViewController:popoverContent];
+    }
+    
+    [_infoPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
 }
 
 @end
