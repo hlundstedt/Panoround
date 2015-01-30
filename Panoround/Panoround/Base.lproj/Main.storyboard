@@ -20,7 +20,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WT8-UJ-jAY">
                                 <rect key="frame" x="0.0" y="64" width="768" height="64"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="uWS-V4-OhE">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="uWS-V4-OhE">
                                         <rect key="frame" x="448" y="18" width="300" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="cOD-mg-ZKa"/>
