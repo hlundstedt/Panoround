@@ -175,10 +175,11 @@
         infoPopover.owner.text = [NSString stringWithFormat:@"taken by %@", _originalPhoto.owner_name];
         infoPopover.date.text = _originalPhoto.upload_date;
         
-        CGRect rect = [infoPopover.title.text boundingRectWithSize:CGSizeMake(self.view.bounds.size.width, infoPopover.title.bounds.size.height) options:NSStringDrawingUsesLineFragmentOrigin
-         attributes:@{ NSFontAttributeName : [UIFont boldSystemFontOfSize:17] } context:nil];
+        CGRect titleRect = [infoPopover.title.text boundingRectWithSize:CGSizeMake(self.view.bounds.size.width, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : [UIFont boldSystemFontOfSize:17] } context:nil];
+        CGRect ownerRect = [infoPopover.owner.text boundingRectWithSize:CGSizeMake(self.view.bounds.size.width, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:17] } context:nil];
+        CGRect dateRect = [infoPopover.date.text boundingRectWithSize:CGSizeMake(self.view.bounds.size.width, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:17] } context:nil];
         
-        CGFloat popoverWidth = rect.size.width + 20;
+        CGFloat popoverWidth = MAX(MAX(titleRect.size.width, ownerRect.size.width), dateRect.size.width) + 20;
         UIViewController *popoverContent = [[UIViewController alloc] init];
         popoverContent.view = infoPopover;
         popoverContent.preferredContentSize = CGSizeMake(popoverWidth, infoPopover.bounds.size.height);
