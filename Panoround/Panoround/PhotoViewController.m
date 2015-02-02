@@ -7,6 +7,7 @@
 //
 
 #import "PhotoViewController.h"
+#import "MapViewController.h"
 #import "InfoPopover.h"
 
 @interface PhotoViewController ()
@@ -162,10 +163,20 @@
     return nil;
 }
 
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showOnMap"]) {
+        MapViewController *viewController = [segue destinationViewController];
+        viewController.photoLocation = CLLocationCoordinate2DMake(_originalPhoto.latitude, _originalPhoto.longitude);
+    }
+}
+
 #pragma mark - Actions
 
 - (IBAction)didClickMapButton:(id)sender {
-    
+    [self performSegueWithIdentifier:@"showOnMap" sender:self];
 }
 
 - (IBAction)didClickInfoButton:(id)sender {

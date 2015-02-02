@@ -16,6 +16,8 @@
 
 @interface GalleryViewController : UIViewController <UICollectionViewDataSource, UINavigationControllerDelegate, CLLocationManagerDelegate, StackLayoutDelegate, PhotoManagerDelegate>
 
++ (CLLocation*)getLastLocation;
+
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *areaControl;
 @property (nonatomic, weak) IBOutlet StackLayout *stackLayout;

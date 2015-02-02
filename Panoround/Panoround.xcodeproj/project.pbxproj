@@ -30,6 +30,7 @@
 		AF1FC72919AE14160000EFDB /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1FC72819AE14160000EFDB /* PhotoViewController.m */; };
 		AFE927D519A3AC3D0023850F /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE927D419A3AC3D0023850F /* CALayer+XibConfiguration.m */; };
 		AFEBD9F7199CB84E00B86FF6 /* StackLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEBD9F6199CB84E00B86FF6 /* StackLayout.m */; };
+		AFF823581A7FAFB50073B5B5 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF823571A7FAFB50073B5B5 /* MapViewController.m */; };
 		AFFAC9C919CB563000D6FDB5 /* ToPhotoTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFAC9C819CB563000D6FDB5 /* ToPhotoTransition.m */; };
 		AFFAC9CD19CB783900D6FDB5 /* FromPhotoTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFAC9CC19CB783900D6FDB5 /* FromPhotoTransition.m */; };
 		AFFB68341A7BBA29007111A9 /* InfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFFB68331A7BBA29007111A9 /* InfoPopover.xib */; };
@@ -75,7 +76,8 @@
 		21A374D0192D408700BFED62 /* Panoramas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Panoramas.m; sourceTree = "<group>"; };
 		21A374D2192E858300BFED62 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
 		21A374D3192E858300BFED62 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
-		34947A30944B44FD8A25A35F /* Pods-Panoround.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panoround.xcconfig"; path = "Pods/Pods-Panoround.xcconfig"; sourceTree = "<group>"; };
+		84B321E7F3B050393B59FA52 /* Pods-Panoround.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panoround.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Panoround/Pods-Panoround.debug.xcconfig"; sourceTree = "<group>"; };
+		8CEBEA17C9B46286769E2F90 /* Pods-Panoround.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panoround.release.xcconfig"; path = "Pods/Target Support Files/Pods-Panoround/Pods-Panoround.release.xcconfig"; sourceTree = "<group>"; };
 		AF128ABF1A781DD700767FF8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		AF1FC72719AE14160000EFDB /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		AF1FC72819AE14160000EFDB /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
@@ -83,6 +85,8 @@
 		AFE927D419A3AC3D0023850F /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		AFEBD9F5199CB84E00B86FF6 /* StackLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackLayout.h; sourceTree = "<group>"; };
 		AFEBD9F6199CB84E00B86FF6 /* StackLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackLayout.m; sourceTree = "<group>"; };
+		AFF823561A7FAFB50073B5B5 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		AFF823571A7FAFB50073B5B5 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		AFFAC9C719CB563000D6FDB5 /* ToPhotoTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToPhotoTransition.h; sourceTree = "<group>"; };
 		AFFAC9C819CB563000D6FDB5 /* ToPhotoTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToPhotoTransition.m; sourceTree = "<group>"; };
 		AFFAC9CB19CB783900D6FDB5 /* FromPhotoTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FromPhotoTransition.h; sourceTree = "<group>"; };
@@ -125,7 +129,7 @@
 				21A374B8192D2C4800BFED62 /* PanoroundTests */,
 				21A37492192D2C4800BFED62 /* Frameworks */,
 				21A37491192D2C4800BFED62 /* Products */,
-				34947A30944B44FD8A25A35F /* Pods-Panoround.xcconfig */,
+				A5E1E5E0D07BD52EE506BF90 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,6 +219,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		A5E1E5E0D07BD52EE506BF90 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				84B321E7F3B050393B59FA52 /* Pods-Panoround.debug.xcconfig */,
+				8CEBEA17C9B46286769E2F90 /* Pods-Panoround.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AF1FC72619AE13AA0000EFDB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +235,8 @@
 				21A374A9192D2C4800BFED62 /* GalleryViewController.m */,
 				AF1FC72719AE14160000EFDB /* PhotoViewController.h */,
 				AF1FC72819AE14160000EFDB /* PhotoViewController.m */,
+				AFF823561A7FAFB50073B5B5 /* MapViewController.h */,
+				AFF823571A7FAFB50073B5B5 /* MapViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -373,7 +388,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Panoround-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Panoround/Pods-Panoround-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -396,6 +411,7 @@
 				AFE927D519A3AC3D0023850F /* CALayer+XibConfiguration.m in Sources */,
 				21A374CA192D2CD500BFED62 /* PhotoManager.m in Sources */,
 				AF1FC72919AE14160000EFDB /* PhotoViewController.m in Sources */,
+				AFF823581A7FAFB50073B5B5 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,7 +535,7 @@
 		};
 		21A374C3192D2C4800BFED62 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34947A30944B44FD8A25A35F /* Pods-Panoround.xcconfig */;
+			baseConfigurationReference = 84B321E7F3B050393B59FA52 /* Pods-Panoround.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -536,7 +552,7 @@
 		};
 		21A374C4192D2C4800BFED62 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34947A30944B44FD8A25A35F /* Pods-Panoround.xcconfig */;
+			baseConfigurationReference = 8CEBEA17C9B46286769E2F90 /* Pods-Panoround.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

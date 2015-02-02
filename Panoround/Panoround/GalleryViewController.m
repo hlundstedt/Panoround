@@ -13,14 +13,19 @@
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *indicator;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) CLLocation *lastLocation;
 @property (nonatomic, strong) NSTimer *locationTimer;
 @property (nonatomic, strong) NSArray *areaDistances;
 @property (nonatomic, strong) Panoramas *originalPanoramas;
 
 @end
 
+static CLLocation *lastLocation;
+
 @implementation GalleryViewController
+
++ (CLLocation*)getLastLocation {
+    return lastLocation;
+}
 
 - (void)viewDidLoad
 {
@@ -31,7 +36,7 @@
     _areaDistances = @[@1000, @5000, @10000, @50000, @100000];
     _photos = [NSMutableArray array];
     _stackLayout.customDataSource = self;
-    _lastLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
+    lastLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
@@ -76,7 +81,7 @@
     int distance = [[_areaDistances objectAtIndex:_areaControl.selectedSegmentIndex] intValue];
     [self setDownloadIndicatorEnabled:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [PhotoManager getPanoramasFromLocation:_lastLocation.coordinate distance:distance delegate:self];
+        [PhotoManager getPanoramasFromLocation:lastLocation.coordinate distance:distance delegate:self];
     });
     // Lund 55.7058400, 13.1932100
 }
@@ -109,11 +114,16 @@
 
 #pragma mark - CLLocationManagerDelegate
 
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"Failed to get location: %@", error);
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation *newLocation = [locations lastObject];
-    if ([newLocation distanceFromLocation:_lastLocation] > 200) {
-        _lastLocation = newLocation;
+    if ([newLocation distanceFromLocation:lastLocation] > 200) {
+        lastLocation = newLocation;
         [_areaControl sendActionsForControlEvents:UIControlEventValueChanged];
     }
     [_locationManager stopUpdatingLocation];

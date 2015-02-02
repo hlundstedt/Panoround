@@ -160,11 +160,34 @@
                     <navigationItem key="navigationItem" id="Udj-7a-EGa"/>
                     <connections>
                         <outlet property="scrollView" destination="MG6-Ze-Pim" id="zsH-hU-rVP"/>
+                        <segue destination="Dcz-Yc-tr4" kind="push" identifier="showOnMap" id="yCI-cF-gZQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGb-yQ-IYA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2258" y="-158"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="pLD-Or-nZi">
+            <objects>
+                <viewController id="Dcz-Yc-tr4" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zPg-oZ-gYR"/>
+                        <viewControllerLayoutGuide type="bottom" id="dxy-c8-hnD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SZB-qU-LsJ" customClass="GMSMapView">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YpR-bG-2nB"/>
+                    <connections>
+                        <outlet property="mapView" destination="SZB-qU-LsJ" id="NQr-JV-kYh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C2v-4k-h0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3396" y="-158"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qbb-Kh-z0I">
