@@ -11,8 +11,12 @@
 
 @implementation PhotoManager
 
-+ (void)getPanoramasFromLocation:(CLLocationCoordinate2D)location distance:(NSInteger)distance delegate:(id<PhotoManagerDelegate>) delegate;
+- (void)getPanoramasFromLocation:(CLLocationCoordinate2D)location distance:(NSInteger)distance
 {
+    if (!_delegate) {
+        return;
+    }
+    
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, distance, distance);
     double latMin = region.center.latitude - .5 * region.span.latitudeDelta;
     double latMax = region.center.latitude + .5 * region.span.latitudeDelta;
@@ -29,22 +33,22 @@
     [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:mediumPanormasUrl] queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
        if (error) {
-           [delegate getPanoramasFailedWithError:error];
+           [_delegate getPanoramasFailedWithError:error];
        } else {
            mediumPanoramas = [[Panoramas alloc] initWithString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] error:&error];
            if (error) {
-               [delegate getPanoramasFailedWithError:error];
+               [_delegate getPanoramasFailedWithError:error];
            } else {
                NSLog(@"Getting original panoramas from %@", [originalPanormasUrl absoluteString]);
                [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:originalPanormasUrl] queue:[[NSOperationQueue alloc] init]completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                    if (error) {
-                       [delegate getPanoramasFailedWithError:error];
+                       [_delegate getPanoramasFailedWithError:error];
                    } else {
                        originalPanoramas = [[Panoramas alloc] initWithString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] error:&error];
                        if (error) {
-                           [delegate getPanoramasFailedWithError:error];
+                           [_delegate getPanoramasFailedWithError:error];
                        } else {
-                           [delegate receivedMediumPanoramas:mediumPanoramas originalPanoramas:originalPanoramas];
+                           [_delegate receivedMediumPanoramas:mediumPanoramas originalPanoramas:originalPanoramas];
                        }
                    }
                 }];

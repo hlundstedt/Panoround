@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *indicator;
 
+@property (nonatomic, strong) PhotoManager *photoManager;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSTimer *locationTimer;
 @property (nonatomic, strong) NSArray *areaDistances;
@@ -38,6 +39,9 @@ static CLLocation *lastLocation;
     _stackLayout.customDataSource = self;
     lastLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
     
+    _photoManager = [[PhotoManager alloc] init];
+    _photoManager.delegate = self;
+    
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
@@ -45,7 +49,6 @@ static CLLocation *lastLocation;
     if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [_locationManager requestWhenInUseAuthorization];
     }
-    [_locationManager startUpdatingLocation];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -59,6 +62,7 @@ static CLLocation *lastLocation;
 {
     [super viewDidAppear:animated];
     self.navigationController.delegate = self;
+    [_locationManager startUpdatingLocation];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -75,20 +79,20 @@ static CLLocation *lastLocation;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)areaControlAction:(id)sender
+- (IBAction)didUpdateArea:(id)sender
 {
     [self clearPhotos];
     int distance = [[_areaDistances objectAtIndex:_areaControl.selectedSegmentIndex] intValue];
     [self setDownloadIndicatorEnabled:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [PhotoManager getPanoramasFromLocation:lastLocation.coordinate distance:distance delegate:self];
+        [_photoManager getPanoramasFromLocation:lastLocation.coordinate distance:distance];
     });
     // Lund 55.7058400, 13.1932100
 }
 
 - (void)clearPhotos
 {
-    [_collectionView performBatchUpdates:^{
+//    [_collectionView performBatchUpdates:^{
         int photoCount = _photos.count;
         NSMutableArray *arrayWithIndexPathsRemove = [NSMutableArray array];
         
@@ -97,7 +101,7 @@ static CLLocation *lastLocation;
             [arrayWithIndexPathsRemove addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
         [_collectionView deleteItemsAtIndexPaths:arrayWithIndexPathsRemove];
-    } completion:nil];
+//    } completion:nil];
 }
 
 - (void)setDownloadIndicatorEnabled:(BOOL)enabled

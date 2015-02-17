@@ -182,7 +182,9 @@
         attr.frame = _isPortrait ? CGRectMake(attr.frame.origin.x, MAX(self.collectionView.frame.size.height, _contentHeight), attr.frame.size.width, attr.frame.size.height) : CGRectMake(MAX(self.collectionView.frame.size.width, _contentWidth), attr.frame.origin.y, attr.frame.size.width, attr.frame.size.height);
         [_indexPathsToAnimate removeObject:itemIndexPath];
     }
-    _finalLayout[itemIndexPath] = attr;
+    if (attr) {
+        _finalLayout[itemIndexPath] = attr;
+    }
     
     return attr;
 }

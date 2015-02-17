@@ -22,6 +22,8 @@
 
 @interface PhotoManager : NSObject
 
-+ (void)getPanoramasFromLocation:(CLLocationCoordinate2D)location distance:(NSInteger)distance delegate:(id<PhotoManagerDelegate>) delegate;
+@property (nonatomic, strong) id<PhotoManagerDelegate> delegate;
+
+- (void)getPanoramasFromLocation:(CLLocationCoordinate2D)location distance:(NSInteger)distance;
 
 @end
